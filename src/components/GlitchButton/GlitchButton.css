@@ -1,0 +1,107 @@
+.glitch-btn {
+    position: relative;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--text-primary);
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.glitch-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* Glitch Effect Elements */
+.glitch-btn::before,
+.glitch-btn::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    opacity: 0;
+}
+
+.glitch-btn:hover::before {
+    left: -2px;
+    text-shadow: 2px 0 #FF0033;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    opacity: 1;
+    background: transparent;
+    color: var(--bg-color);
+}
+
+.glitch-btn:hover::after {
+    left: 2px;
+    text-shadow: -2px 0 #00CCFF;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    opacity: 1;
+    background: transparent;
+    color: var(--bg-color);
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip: rect(20px, 9999px, 10px, 0);
+    }
+
+    20% {
+        clip: rect(60px, 9999px, 80px, 0);
+    }
+
+    40% {
+        clip: rect(10px, 9999px, 90px, 0);
+    }
+
+    60% {
+        clip: rect(80px, 9999px, 20px, 0);
+    }
+
+    80% {
+        clip: rect(30px, 9999px, 50px, 0);
+    }
+
+    100% {
+        clip: rect(50px, 9999px, 30px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(90px, 9999px, 30px, 0);
+    }
+
+    20% {
+        clip: rect(10px, 9999px, 80px, 0);
+    }
+
+    40% {
+        clip: rect(50px, 9999px, 10px, 0);
+    }
+
+    60% {
+        clip: rect(20px, 9999px, 90px, 0);
+    }
+
+    80% {
+        clip: rect(70px, 9999px, 40px, 0);
+    }
+
+    100% {
+        clip: rect(40px, 9999px, 60px, 0);
+    }
+}
