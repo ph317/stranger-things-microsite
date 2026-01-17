@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import VecnaVines from '../components/VecnaVines';
 import ParticleSystem from '../components/ParticleSystem';
 import LightningEffect from '../components/LightningEffect';
 import '../styles/TimelinePage.css';
@@ -137,10 +138,13 @@ const TimelinePage = () => {
 
     return (
         <div className="timeline-page">
+            <div className="vecna-bg" />
             <div
                 className="vecna-bloom"
                 style={{ opacity: 0.3 + (scrollProgress / 200) }}
             />
+            <VecnaVines />
+            <LightningEffect />
 
             {/* Parallax Ash Overlay */}
             <div

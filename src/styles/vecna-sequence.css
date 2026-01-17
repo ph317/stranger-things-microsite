@@ -434,18 +434,17 @@
 
 .escape-panel {
     position: absolute;
-    bottom: 10%;
-    /* Moved to the bottom */
+    bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    padding: 2rem;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 2.5rem;
     border-radius: 12px;
-    border: 2px solid rgba(255, 0, 0, 0.5);
+    border: 2px solid rgba(255, 0, 0, 0.4);
     text-align: center;
     animation: fadeIn 0.5s ease;
     font-family: var(--font-body);
-    /* Ensure Helvetica */
+    z-index: 20;
 }
 
 .escape-hint {

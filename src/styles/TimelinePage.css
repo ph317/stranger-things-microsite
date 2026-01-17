@@ -1,6 +1,6 @@
 .timeline-page {
     min-height: 100vh;
-    background-color: var(--color-bg);
+    background-color: #050000;
     color: var(--color-text);
     padding: var(--spacing-xl) var(--spacing-md);
     position: relative;

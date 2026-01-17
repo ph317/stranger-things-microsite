@@ -1,11 +1,9 @@
-@import url('https://fonts.cdnfonts.com/css/itc-benguiat');
-
 :root {
     --color-bg: rgb(0, 1, 14);
     --color-text: #eaeaea;
     --color-accent: #e50914;
     /* Stranger Things Red */
-    --font-heading: 'ITC Benguiat', serif;
+    --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
     /* Spacing System - Fluid Scaling */

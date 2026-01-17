@@ -131,21 +131,6 @@ const VecnaVines = () => {
                         ctx.lineTo(x + offsetX, y + offsetY);
                         ctx.stroke();
                     }
-
-                    // Thorn
-                    // if (veinChance > 0.92) {
-                    //     let angle = (smoothNoise(i, seed + 3) * Math.PI * 2);
-                    //     let thornLen = thickness * 1.2;
-                    //     let tx = x + Math.cos(angle) * thornLen;
-                    //     let ty = y + Math.sin(angle) * thornLen;
-
-                    //     ctx.strokeStyle = 'rgba(83, 0, 0, 0.6)';
-                    //     ctx.lineWidth = 1.5;
-                    //     ctx.beginPath();
-                    //     ctx.moveTo(x, y);
-                    //     ctx.lineTo(tx, ty);
-                    //     ctx.stroke();
-                    // }
                 }
 
                 // 5. Specular Highlights (Wet)
