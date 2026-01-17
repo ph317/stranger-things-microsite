@@ -8,17 +8,31 @@ import VecnaVines from './components/VecnaVines';
 import LightningEffect from './components/LightningEffect';
 import VoidPage from './pages/VoidPage';
 import VecnaPage from './pages/VecnaPage';
+import TimelinePage from './pages/TimelinePage';
 import RestrictedArea from './components/RestrictedArea';
 import ConversationSequence from './components/ConversationSequence';
 import ScreenCrackEffect from './components/ScreenCrackEffect';
-import normalImage from './images/st_normal_world_no_sign.jpeg';
-import upsideDownImage from './images/st_upside_down_no_sign.jpeg';
+import CinematicIntro from './components/CinematicIntro';
+import normalImage from './images/characters.jpg';
+import upsideDownImage from './images/duffer-brothers.png';
 import './styles/vecna-sequence.css';
 
 function HomePage() {
   const navigate = useNavigate();
   const [showConversation, setShowConversation] = useState(false);
   const [showCracks, setShowCracks] = useState(false);
+  const [introActive, setIntroActive] = useState(() => {
+    // Check if intro has already played in this session
+    return !sessionStorage.getItem('introPlayed');
+  });
+  const [pageFadeIn, setPageFadeIn] = useState(false);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('introPlayed', 'true');
+    setIntroActive(false);
+    // Start page fade-in immediately after intro is removed
+    setTimeout(() => setPageFadeIn(true), 100);
+  };
 
   const startSequence = () => {
     setShowConversation(true);
@@ -37,53 +51,61 @@ function HomePage() {
   };
 
   return (
-    <div className="App">
-      {showConversation && <ConversationSequence onComplete={onConversationComplete} />}
-      {showCracks && <ScreenCrackEffect onComplete={onCracksComplete} />}
+    <div className={`App ${pageFadeIn ? 'cinematic-reveal' : ''}`}>
+      {introActive && <CinematicIntro onComplete={handleIntroComplete} />}
 
-      <div className="vecna-bloom" />
-      <VecnaVines />
-      <LightningEffect />
-      {/* Global Particle System */}
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', opacity: 0.5 }}>
-        <ParticleSystem />
-      </div>
+      {!introActive && (
+        <>
+          {showConversation && <ConversationSequence onComplete={onConversationComplete} />}
+          {showCracks && <ScreenCrackEffect onComplete={onCracksComplete} />}
 
-      <header className="site-header">
-        <FlickeringTitle />
-      </header>
-
-      {/* Hero Section: Landscape Glass Card */}
-      <section className="hero-section">
-        <div className="hero-card glass">
-          <RevealLens mainImage={normalImage} altImage={upsideDownImage} />
-        </div>
-      </section>
-
-      {/* Welcome Content (Now below hero) */}
-      <section className="welcome-section">
-        <div className="glass-content glass">
-          <div>
-            <h2>Welcome to Hawkins</h2>
-            <p>
-              Experience the dual nature of our reality. One moment you are safe in the suburbs,
-              and the next, you are trapped in a dark reflection.
-            </p>
-            <div className="actions">
-              <Link to="/void">
-                <button className="cta-button glass">Enter the Void</button>
-              </Link>
-              <button className="cta-button secondary glass">Learn More</button>
-            </div>
+          {/* Background Layer: Truly Global & Viewport-filling */}
+          <div className="vecna-bg" />
+          <div className="vecna-bloom" />
+          <VecnaVines />
+          <LightningEffect />
+          <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none', opacity: 0.5 }}>
+            <ParticleSystem />
           </div>
-        </div>
-      </section>
 
-      <div className="divider-glass" />
-      <CharacterCarousel />
+          {/* Foreground Layer: Centered and Restricted Width */}
+          <div className="content-wrapper">
+            {/* Hero Section: Landscape Glass Card */}
+            <section className="hero-section">
+              <div className="hero-card glass">
+                <RevealLens mainImage={normalImage} altImage={upsideDownImage} />
+              </div>
+            </section>
 
-      <div className="divider-glass" />
-      <RestrictedArea onActivate={startSequence} />
+            {/* Welcome Content (Now below hero) */}
+            <section className="welcome-section">
+              <div className="glass-content glass">
+                <div>
+                  <h2>Welcome to Hawkins</h2>
+                  <p>
+                    Experience the dual nature of our reality. One moment you are safe in the suburbs,
+                    and the next, you are trapped in a dark reflection.
+                  </p>
+                  <div className="actions">
+                    <a href="https://hawkins-map.vercel.app/" target="_blank" rel="noopener noreferrer">
+                      <button className="cta-button glass">Explore Map</button>
+                    </a>
+                    <Link to="/timeline">
+                      <button className="cta-button secondary glass">Timeline</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div className="divider-glass" />
+            <CharacterCarousel />
+
+            <div className="divider-glass" />
+            <RestrictedArea onActivate={startSequence} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -95,6 +117,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/void" element={<VoidPage />} />
         <Route path="/vecna" element={<VecnaPage />} />
+        <Route path="/timeline" element={<TimelinePage />} />
       </Routes>
     </BrowserRouter>
   );

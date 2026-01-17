@@ -7,19 +7,33 @@ const ParticleSystem = () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         let animationFrameId;
+        const particles = [];
+        const particleCount = 800;
 
-        // Set canvas size
+        // Set canvas size based on container
         const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const container = canvas.parentElement;
+            if (!container) return;
+
+            const { width, height } = container.getBoundingClientRect();
+            canvas.width = width;
+            canvas.height = height;
+
+            // Re-distribute particles to fill the new dimensions entirely
+            if (particles.length > 0) {
+                particles.forEach(p => {
+                    p.x = Math.random() * canvas.width;
+                    p.y = Math.random() * canvas.height;
+                });
+            }
         };
-        window.addEventListener('resize', resizeCanvas);
+
+        const resizeObserver = new ResizeObserver(resizeCanvas);
+        if (canvas.parentElement) {
+            resizeObserver.observe(canvas.parentElement);
+        }
         resizeCanvas();
 
-        // Particle Config
-        // Particle Config
-        const particleCount = 800;
-        const particles = [];
 
         class Particle {
             constructor() {
@@ -27,8 +41,8 @@ const ParticleSystem = () => {
             }
 
             reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
+                this.x = Math.random() * (canvas.width || window.innerWidth);
+                this.y = Math.random() * (canvas.height || window.innerHeight);
                 this.size = Math.random() * 2 + 0.5;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
@@ -76,7 +90,7 @@ const ParticleSystem = () => {
         animate();
 
         return () => {
-            window.removeEventListener('resize', resizeCanvas);
+            resizeObserver.disconnect();
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
@@ -88,8 +102,8 @@ const ParticleSystem = () => {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
+                width: '100vw',
+                height: '100vh',
                 pointerEvents: 'none',
                 zIndex: 5 // Ensure it sits above the background but below valid UI if needed, though this is for the Reveal Layer usually
             }}

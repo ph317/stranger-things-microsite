@@ -177,9 +177,8 @@ const VecnaVines = () => {
             height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
-            // Re-init mainly to ensure coverage, but vines don't strictly *need* re-init if just width changes
-            // But let's keep them stable
-            if (vines.length === 0) initVines();
+            // Re-init ensures vines are redistributed to fill new dimensions (especially height)
+            initVines();
         };
 
         window.addEventListener('resize', resize);
@@ -200,8 +199,8 @@ const VecnaVines = () => {
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
+                width: '100vw',
+                height: '100vh',
                 pointerEvents: 'none',
                 zIndex: -1,
                 opacity: 0.9,

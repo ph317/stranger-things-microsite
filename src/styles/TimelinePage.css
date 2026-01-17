@@ -1,0 +1,245 @@
+.timeline-page {
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: var(--spacing-xl) var(--spacing-md);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.timeline-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.back-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+.back-link:hover {
+    color: var(--color-accent);
+}
+
+.timeline-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.timeline-progress-bar {
+    height: 4px;
+    background: var(--color-accent);
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px var(--color-accent);
+}
+
+.parallax-ashes {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.timeline-trail {
+    position: relative;
+    padding: 4rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-line-inner {
+    width: 100%;
+    background: linear-gradient(to bottom, #e50914, #7a0000);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+    transition: height 0.1s ease-out;
+}
+
+.timeline-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12rem;
+    /* Increased spacing for cinematic feel */
+    position: relative;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-event.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.event-card {
+    width: 42%;
+    padding: 2.5rem;
+    position: relative;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: default;
+}
+
+.event-card:hover {
+    transform: scale(1.02) translateY(-5px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 40px rgba(229, 9, 20, 0.15), inset 0 0 20px rgba(229, 9, 20, 0.1);
+}
+
+.timeline-footer {
+    padding: 6rem 0 10rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+
+.timeline-footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cta-content {
+    padding: 4rem;
+    display: inline-block;
+    max-width: 700px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-tagline {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.cta-subtext {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2.5rem;
+}
+
+.netflix-cta-link {
+    text-decoration: none;
+}
+
+.netflix-cta-link .cta-button {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.timeline-event.left .event-card {
+    margin-right: auto;
+    text-align: right;
+    transform-origin: right center;
+}
+
+.timeline-event.right .event-card {
+    margin-left: auto;
+    text-align: left;
+    transform-origin: left center;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border: 3px solid var(--color-accent);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.timeline-event.visible .timeline-dot {
+    transform: translateX(-50%) scale(1.5);
+    background: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent);
+}
+
+.event-year {
+    font-family: var(--font-heading);
+    color: var(--color-accent);
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+.event-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.event-description {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .timeline-line {
+        left: 30px;
+        transform: none;
+    }
+
+    .timeline-dot {
+        left: 30px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-event {
+        justify-content: flex-start;
+        padding-left: 60px;
+        margin-bottom: 8rem;
+    }
+
+    .event-card {
+        width: 100% !important;
+        text-align: left !important;
+    }
+}

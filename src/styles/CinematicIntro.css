@@ -1,0 +1,364 @@
+.cinematic-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    overflow: hidden;
+    cursor: none;
+}
+
+.intro-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vw;
+    /* STATIONARY LOGO: No master-zoom-thru */
+    will-change: transform, opacity;
+}
+
+/* Horizontal Logo Bars - Matched to 8s settle */
+.logo-bars {
+    width: 65vw;
+    height: 1.5vh;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-bars.top {
+    margin-bottom: -1vh;
+}
+
+.logo-bars.bottom {
+    margin-top: -1vh;
+    width: 50vw;
+}
+
+.bar-line {
+    height: 4px;
+    background: transparent;
+    border: 1.5px solid #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    border-radius: 2px;
+}
+
+.bar-line.left,
+.bar-line.right {
+    width: 42%;
+    animation: slide-bar-x 8s 1s forwards;
+    transform: scaleX(0);
+}
+
+.bar-line.full {
+    width: 100%;
+    animation: slide-bar-x 8s 2s forwards;
+    transform: scaleX(0);
+}
+
+@keyframes slide-bar-x {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Typography Base - Preserving Hollow Look */
+.title-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #ff0000;
+    font-family: 'Benguiat', serif;
+    font-weight: 900;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(255, 0, 0, 0.4));
+}
+
+.title-line span {
+    font-size: 8vw;
+    letter-spacing: -0.2vw;
+    opacity: 0;
+    filter: blur(5px);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    will-change: transform, opacity;
+}
+
+.title-line span.oversized {
+    font-size: 11vw;
+    -webkit-text-stroke: 2.5px #ff0000;
+}
+
+.title-line.bottom-line span {
+    font-size: 7vw;
+    letter-spacing: -0.5vw;
+}
+
+.title-line.bottom-line span.oversized {
+    font-size: 9.5vw;
+}
+
+/* Season 5 Letter Rearrangement paths - Slow 8s Settlement */
+/* Each letter arrives at 100% opacity and stays there */
+.top-line span:nth-child(1) {
+    animation: weave-1 8s 0.2s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(2) {
+    animation: weave-2 8s 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(3) {
+    animation: weave-3 8s 0.4s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(4) {
+    animation: weave-4 8s 1.2s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(5) {
+    animation: weave-5 8s 0.6s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(6) {
+    animation: weave-6 8s 1.0s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(7) {
+    animation: weave-7 8s 0.4s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.top-line span:nth-child(8) {
+    animation: weave-8 8s 0.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.bottom-line span:nth-child(2) {
+    animation: weave-b1 8s 1.5s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.bottom-line span:nth-child(3) {
+    animation: weave-b2 8s 2.2s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.bottom-line span:nth-child(4) {
+    animation: weave-b3 8s 1.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.bottom-line span:nth-child(5) {
+    animation: weave-b4 8s 2.5s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.bottom-line span:nth-child(6) {
+    animation: weave-b5 8s 2.0s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+.bottom-line span:nth-child(7) {
+    animation: weave-b6 8s 2.8s cubic-bezier(0.1, 0, 0.1, 1) forwards;
+}
+
+@keyframes weave-1 {
+    0% {
+        transform: translate(-50vw, -20vh) scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-2 {
+    0% {
+        transform: translateY(-50vh) scale(1.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-3 {
+    0% {
+        transform: translate(30vw, -40vh) scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-4 {
+    0% {
+        transform: translate(0, 50vh) scale(3);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-5 {
+    0% {
+        transform: translate(-30vw, 40vh) rotate(-15deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) rotate(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-6 {
+    0% {
+        transform: translate(50vw, 20vh) scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-7 {
+    0% {
+        transform: translate(10vw, -60vh) scale(1.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-8 {
+    0% {
+        transform: translate(40vw, 10vh) scale(2.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-b1 {
+    0% {
+        transform: translate(-40vw, 20vh) scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-b2 {
+    0% {
+        transform: translate(0, 40vh) scale(1.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-b3 {
+    0% {
+        transform: translate(20vw, 30vh) scale(2.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-b4 {
+    0% {
+        transform: translate(-20vw, 50vh) scale(1.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-b5 {
+    0% {
+        transform: translate(40vw, 20vh) scale(2.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes weave-b6 {
+    0% {
+        transform: translate(0, 60vh) scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Ambient Environment */
+.cinematic-intro::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 20%, rgba(255, 0, 0, 0.05) 100%);
+    pointer-events: none;
+}
+
+.cinematic-intro.fading {
+    background: #000;
+}
+
+/* Cinematic Slow Fade-out (Now 4s directly after stationary hold) */
+.cinematic-intro.fading .intro-content {
+    opacity: 0;
+    transition: opacity 4s cubic-bezier(0.4, 0, 0.2, 1);
+}

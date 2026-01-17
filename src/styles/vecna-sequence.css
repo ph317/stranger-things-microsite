@@ -3,17 +3,24 @@
    ======================================== */
 
 .restricted-area-section {
-    padding: var(--spacing-xl) 0;
-    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin: 0 auto var(--spacing-xl);
 }
 
 .restricted-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: var(--spacing-lg);
     text-align: center;
     position: relative;
     overflow: hidden;
+    /* Apply standard glass effect for uniformity */
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-card);
 }
 
 .warning-header {
@@ -30,15 +37,15 @@
 }
 
 .restricted-title {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
     color: #ff0000;
     text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
-    letter-spacing: 4px;
+    letter-spacing: clamp(2px, 1vw, 4px);
 }
 
 .warning-text {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     line-height: 1.8;
     margin-bottom: 2rem;
     color: var(--color-text);
@@ -51,8 +58,8 @@
 
 .forbidden-button {
     position: relative;
-    padding: 1.5rem 3rem;
-    font-size: 1.3rem;
+    padding: clamp(1rem, 3vw, 1.5rem) clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(1rem, 4vw, 1.3rem);
     font-family: var(--font-body);
     font-weight: bold;
     text-transform: uppercase;
