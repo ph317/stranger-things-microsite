@@ -652,3 +652,72 @@ button {
     opacity: 1;
     transform: scale(1);
 }
+
+/* --- Developer Signature --- */
+.developer-signature {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.signature-link {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--glass-shadow);
+}
+
+.signature-link:hover {
+    background: rgba(229, 9, 20, 0.1);
+    border-color: var(--color-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(229, 9, 20, 0.3);
+}
+
+.by-text {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.name-text {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+    transition: all 0.3s ease;
+}
+
+.signature-link:hover .name-text {
+    text-shadow: 0 0 20px rgba(229, 9, 20, 0.9);
+}
+
+@media (max-width: 768px) {
+    .developer-signature {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .signature-link {
+        padding: 0.5rem 1rem;
+    }
+
+    .name-text {
+        font-size: 0.8rem;
+    }
+}

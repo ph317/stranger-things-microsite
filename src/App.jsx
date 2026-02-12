@@ -13,6 +13,7 @@ import RestrictedArea from './components/RestrictedArea';
 import ConversationSequence from './components/ConversationSequence';
 import ScreenCrackEffect from './components/ScreenCrackEffect';
 import CinematicIntro from './components/CinematicIntro';
+import MainLayout from './components/MainLayout';
 import normalImage from './images/characters.jpg';
 import upsideDownImage from './images/duffer-brothers.png';
 import './styles/vecna-sequence.css';
@@ -113,12 +114,14 @@ function HomePage() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/void" element={<VoidPage />} />
-        <Route path="/vecna" element={<VecnaPage />} />
-        <Route path="/timeline" element={<TimelinePage />} />
-      </Routes>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/void" element={<VoidPage />} />
+          <Route path="/vecna" element={<VecnaPage />} />
+          <Route path="/timeline" element={<TimelinePage />} />
+        </Routes>
+      </MainLayout>
     </BrowserRouter>
   );
 }
